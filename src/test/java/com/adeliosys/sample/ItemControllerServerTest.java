@@ -17,11 +17,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Integration tests for the item controller.
+ * "Server" (i.e. with no real HTTP call) integration tests for the item controller.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-class ItemControllerTest {
+class ItemControllerServerTest {
 
     @Autowired
     private MockMvc mockMvc;
