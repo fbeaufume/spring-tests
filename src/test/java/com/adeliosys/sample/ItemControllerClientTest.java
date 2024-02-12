@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ import static org.hamcrest.Matchers.is;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
+// No need for @Transactional since no test modifies the database
 class ItemControllerClientTest {
 
     @LocalServerPort
@@ -41,7 +44,7 @@ class ItemControllerClientTest {
     }
 
     @Test
-    void getItems() {
+    public void getItems() {
         given().get("/items")
                 .then()
                 .statusCode(200)
