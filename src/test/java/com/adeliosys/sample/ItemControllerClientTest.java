@@ -6,10 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
@@ -19,11 +16,8 @@ import static org.hamcrest.Matchers.is;
 /**
  * "Client" (i.e. with a real HTTP call) integration tests for the item controller.
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
 // No need for @Transactional since no test modifies the database
-class ItemControllerClientTest {
+class ItemControllerClientTest extends BaseTest {
 
     @LocalServerPort
     private int port;
