@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Web slice test for the item controller.
  */
 @WebMvcTest
-@ActiveProfiles("test")
+@ActiveProfiles(value = "test", resolver = CustomActiveProfileResolver.class)
 class ItemControllerSliceTest {
 
     @Autowired

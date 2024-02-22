@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * "Client" (i.e. with a real HTTP call) integration tests for the item controller.
  */
-// No need for @Transactional since no test modifies the database
+// No need for @Transactional since no test method modifies the database
 class ItemControllerClientTest extends BaseTest {
 
     @LocalServerPort
