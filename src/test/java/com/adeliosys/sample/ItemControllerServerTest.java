@@ -1,5 +1,6 @@
 package com.adeliosys.sample;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,7 @@ class ItemControllerServerTest extends BaseTest {
 
     @Test
     public void getItems() throws Exception {
+        // Path-oriented testing
         mockMvc.perform(get("/items"))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -47,6 +49,17 @@ class ItemControllerServerTest extends BaseTest {
                 .andExpect(jsonPath("$[0].price", is(10)))
                 .andExpect(jsonPath("$[1].name", is("item2")))
                 .andExpect(jsonPath("$[1].price", is(20)));
+
+        // DTO-oriented testing
+        List<ItemDto> items = objectMapper.readValue(mockMvc.perform(get("/items"))
+                .andExpect(status().is(200))
+                .andReturn().getResponse().getContentAsString(), new TypeReference<>() {
+        });
+        assertEquals(2, items.size());
+        assertEquals("item1", items.get(0).name());
+        assertEquals(10, items.get(0).price());
+        assertEquals("item2", items.get(1).name());
+        assertEquals(20, items.get(1).price());
     }
 
     @Test

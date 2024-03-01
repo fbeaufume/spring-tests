@@ -1,6 +1,7 @@
 package com.adeliosys.sample;
 
 import io.restassured.RestAssured;
+import io.restassured.common.mapper.TypeRef;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * "Client" (i.e. with a real HTTP call) integration tests for the item controller.
@@ -39,6 +41,7 @@ class ItemControllerClientTest extends BaseTest {
 
     @Test
     public void getItems() {
+        // Path-oriented testing
         given().get("/items")
                 .then()
                 .statusCode(200)
@@ -47,5 +50,14 @@ class ItemControllerClientTest extends BaseTest {
                 .body("[0].price", is(10))
                 .body("[1].name", is("item2"))
                 .body("[1].price", is(20));
+
+        // DTO-oriented testing
+        List<ItemDto> items = given().get("/items").as(new TypeRef<>() {
+        });
+        assertEquals(2, items.size());
+        assertEquals("item1", items.get(0).name());
+        assertEquals(10, items.get(0).price());
+        assertEquals("item2", items.get(1).name());
+        assertEquals(20, items.get(1).price());
     }
 }
