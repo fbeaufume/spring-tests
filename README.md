@@ -12,4 +12,5 @@ For extra information about Spring application context caching in tests, see [Co
 
 To run the tests using H2 execute `mvn test`.
 
-To run the tests using PostgreSQL with Testcontainers (this requires Docker) execute `mvn test -Dtest.profiles=test,postgres`.
+To run the tests using PostgreSQL execute `mvn test -Dtest.profiles=test,postgres`.
+Note that this uses Testcontainers, and so requires Docker.

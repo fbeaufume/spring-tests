@@ -6,9 +6,9 @@ import org.springframework.test.context.support.DefaultActiveProfilesResolver;
 import java.util.Optional;
 
 /**
- * This custom ActiveProfileResolver is used to override the active profiles used by integration tests.
+ * This custom ActiveProfilesResolver is used to override the active profiles used by integration tests.
  */
-public class CustomActiveProfileResolver implements ActiveProfilesResolver {
+public class CustomActiveProfilesResolver implements ActiveProfilesResolver {
 
     private final DefaultActiveProfilesResolver defaultActiveProfilesResolver = new DefaultActiveProfilesResolver();
 
