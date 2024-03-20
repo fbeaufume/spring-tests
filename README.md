@@ -14,3 +14,6 @@ To run the tests using H2 execute `mvn test`.
 
 To run the tests using PostgreSQL execute `mvn test -Dtest.profiles=test,postgres`.
 Note that this uses Testcontainers, and so requires Docker.
+
+This application also uses JUnit Insights to generate some test execution metrics, see HTML files in
+`target/junit-insights-reports`.
