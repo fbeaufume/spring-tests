@@ -27,6 +27,7 @@
     <properties>
         <java.version>17</java.version>
         <junit-insights.version>1.1.0</junit-insights.version>
+        <test.profiles></test.profiles>
     </properties>
 
     <dependencies>
@@ -94,6 +95,7 @@
                         <de.adesso.junitinsights.enabled>true</de.adesso.junitinsights.enabled>
                         <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
                         <de.adesso.junitinsights.reportpath>target/junit-insights-reports/</de.adesso.junitinsights.reportpath>
+                        <spring.profiles.active>${test.profiles}</spring.profiles.active>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
