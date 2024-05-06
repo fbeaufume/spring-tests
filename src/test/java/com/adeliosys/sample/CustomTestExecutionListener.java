@@ -6,7 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is declared in the META-INF/services/org.junit.platform.launcher.TestExecutionListener file.
+ * This class is declared in the META-INF/services/org.junit.platform.launcher.TestExecutionListener file
+ * and also requires the org.junit.platform:junit-platform-launcher Maven test dependency.
  * Note that Spring Test also provides a TestExecutionListener interface, but it is not the same as the one from JUnit.
  */
 public class CustomTestExecutionListener implements TestExecutionListener {
