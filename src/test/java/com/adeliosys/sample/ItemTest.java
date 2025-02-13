@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Unit tests for the item entity.
- * The tests are not very interesting, they only serve as examples
+ * The tests are not very interesting, they only serve as examples.
  */
 public class ItemTest {
 
