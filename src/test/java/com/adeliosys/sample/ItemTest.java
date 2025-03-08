@@ -1,6 +1,8 @@
 package com.adeliosys.sample;
 
+import com.adeliosys.sample.extension.DurationExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Unit tests for the item entity.
  * The tests are not very interesting, they only serve as examples.
  */
+@ExtendWith(DurationExtension.class)
 public class ItemTest {
 
     @Test
