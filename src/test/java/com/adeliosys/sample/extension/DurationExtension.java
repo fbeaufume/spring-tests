@@ -4,9 +4,12 @@ import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This simple JUnit 5 extension logs the duration of each test method and the whole test class.
+ */
 public class DurationExtension implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
 
-    private static final Logger logger = LoggerFactory.getLogger(DurationExtension.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DurationExtension.class);
 
     private long classTimestamp;
 
@@ -19,7 +22,7 @@ public class DurationExtension implements BeforeAllCallback, AfterAllCallback, B
 
     @Override
     public void afterAll(ExtensionContext context) {
-        logger.info("Executed class '{}' in {} ms",
+        LOGGER.info("Executed class '{}' in {} ms",
                 context.getDisplayName(),
                 System.currentTimeMillis() - classTimestamp);
     }
@@ -31,7 +34,7 @@ public class DurationExtension implements BeforeAllCallback, AfterAllCallback, B
 
     @Override
     public void afterEach(ExtensionContext context) {
-        logger.info("Executed method '{}.{}' in {} ms",
+        LOGGER.info("Executed method '{}.{}' in {} ms",
                 context.getParent().map(ExtensionContext::getDisplayName).orElse(""),
                 context.getDisplayName(),
                 System.currentTimeMillis() - methodTimestamp);
