@@ -21,7 +21,6 @@ public class DatabaseCleanupExtension implements AfterAllCallback {
 
     @Override
     public void afterAll(ExtensionContext context) {
-
         ApplicationContext applicationContext = SpringExtension.getApplicationContext(context);
 
         boolean success = true;
@@ -35,7 +34,7 @@ public class DatabaseCleanupExtension implements AfterAllCallback {
             // Check that the table is empty
             long count = entry.getValue().count();
             if (count > 0) {
-                LOGGER.error("{} found {} row{} instead of 0", entry.getKey(), count, count > 1 ? "s" : "");
+                LOGGER.error("Repository '{}' found {} row{} instead of 0", entry.getKey(), count, count > 1 ? "s" : "");
                 success = false;
             }
         }
