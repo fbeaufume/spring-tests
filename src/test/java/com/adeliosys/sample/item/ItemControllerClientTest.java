@@ -1,5 +1,6 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.item;
 
+import com.adeliosys.sample.test.BaseTest;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import org.junit.jupiter.api.AfterAll;
@@ -39,9 +40,11 @@ class ItemControllerClientTest extends BaseTest {
         RestAssured.port = port;
     }
 
+    /**
+     * Check the response using path-oriented validation.
+     */
     @Test
-    public void getItems() {
-        // Path-oriented testing
+    public void getItems1() {
         given().get("/items")
                 .then()
                 .statusCode(200)
@@ -51,7 +54,13 @@ class ItemControllerClientTest extends BaseTest {
                 .body("[1].name", is("item2"))
                 .body("[1].price", is(20));
 
-        // DTO-oriented testing
+    }
+
+    /**
+     * Check the response using DTO-oriented validation.
+     */
+    @Test
+    public void getItems2() {
         List<ItemDto> items = given().get("/items").as(new TypeRef<>() {
         });
         assertEquals(2, items.size());

@@ -1,4 +1,4 @@
-package com.adeliosys.sample.extension;
+package com.adeliosys.sample.test;
 
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class DurationExtension implements BeforeAllCallback, AfterAllCallback, B
 
     @Override
     public void afterAll(ExtensionContext context) {
-        LOGGER.info("Executed class '{}' in {} ms",
+        LOGGER.info("Executed class {} in {} ms",
                 context.getDisplayName(),
                 System.currentTimeMillis() - classTimestamp);
     }
@@ -34,7 +34,7 @@ public class DurationExtension implements BeforeAllCallback, AfterAllCallback, B
 
     @Override
     public void afterEach(ExtensionContext context) {
-        LOGGER.info("Executed method '{}.{}' in {} ms",
+        LOGGER.info("Executed method {}.{} in {} ms",
                 context.getParent().map(ExtensionContext::getDisplayName).orElse(""),
                 context.getDisplayName(),
                 System.currentTimeMillis() - methodTimestamp);

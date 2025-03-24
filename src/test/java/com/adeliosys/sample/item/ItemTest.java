@@ -1,6 +1,6 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.item;
 
-import com.adeliosys.sample.extension.DurationExtension;
+import com.adeliosys.sample.test.DurationExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 

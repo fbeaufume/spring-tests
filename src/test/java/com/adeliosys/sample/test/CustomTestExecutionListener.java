@@ -1,4 +1,4 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.test;
 
 import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.TestPlan;
@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is declared in the META-INF/services/org.junit.platform.launcher.TestExecutionListener file
+ * This JUnit listener logs the duration of the execution of the tests.
+ * The class is declared in the META-INF/services/org.junit.platform.launcher.TestExecutionListener file
  * and also requires the org.junit.platform:junit-platform-launcher Maven test dependency.
+ * <p>
  * Note that Spring Test also provides a TestExecutionListener interface, but it is not the same as the one from JUnit.
  */
 public class CustomTestExecutionListener implements TestExecutionListener {

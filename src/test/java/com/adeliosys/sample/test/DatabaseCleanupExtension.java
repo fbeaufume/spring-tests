@@ -1,4 +1,4 @@
-package com.adeliosys.sample.extension;
+package com.adeliosys.sample.test;
 
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

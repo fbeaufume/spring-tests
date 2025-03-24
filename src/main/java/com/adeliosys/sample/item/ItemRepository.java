@@ -1,4 +1,4 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

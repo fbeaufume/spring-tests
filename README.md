@@ -5,13 +5,23 @@ This repository is a sample application for my
 [Switching between H2 and Testcontainers in Spring tests](https://www.adeliosys.fr/articles/spring-tests-database/)
 articles.
 
-This simple Spring Boot web application shows several opinionated best practices for Spring tests:
+This simple Spring Boot web application shows several opinionated best practices for Spring tests.
 
-- `ItemControllerServerTest`: an example of "server" web integration test for a REST controller using MockMvc
-- `ItemControllerClientTest`: an example of "client" web integration test for a REST controller using REST Assured
-- `BaseTest`: a base integration test class for the above test classes
-- `ItemControllerSliceTest`: an example of a "web slice" integration test for a REST controller (uses a dedicated Spring application context)
-- `SumTest`: a sample parameterized unit test class
+The test classes are :
+
+- `ItemServiceTest`: an example of service tests
+- `ItemControllerServerTest`: an example of "server" web integration tests for a REST controller using MockMvc
+- `ItemControllerClientTest`: an example of "client" web integration tests for a REST controller using REST Assured
+- `ItemControllerSliceTest`: an example of a "web slice" integration tests for a REST controller (uses a dedicated Spring application context)
+- `ItemTest`: basic non-Spring tests
+
+The support test classes are :
+
+- `BaseTest`: a base class for several integration test classes
+- `DurationExtension`: a JUnit 5 extension to measure test execution time
+- `DatabaseCleanupExtension`: a JUnit 5 extension that verifies that the database is cleared after each test class
+- `CustomTestExecutionListener`: a JUnit 5 listener that logs the total tests execution duration
+- `SpringConytextTrackerExtension`: a JUnit 5 extension to track Spring application context usage over test classes
 
 For extra information about Spring application context caching in tests, see [Context Caching](https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html).
 

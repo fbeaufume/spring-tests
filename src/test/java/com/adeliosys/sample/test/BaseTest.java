@@ -1,7 +1,5 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.test;
 
-import com.adeliosys.sample.extension.DatabaseCleanupExtension;
-import com.adeliosys.sample.extension.DurationExtension;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles(value = "test", resolver = CustomActiveProfilesResolver.class)
-@ExtendWith({DatabaseCleanupExtension.class, DurationExtension.class})
+@ExtendWith({SpringContextTrackerExtension.class, DatabaseCleanupExtension.class, DurationExtension.class})
 public abstract class BaseTest {
 
     @Autowired

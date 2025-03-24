@@ -1,4 +1,4 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.test;
 
 import org.springframework.test.context.ActiveProfilesResolver;
 import org.springframework.test.context.support.DefaultActiveProfilesResolver;

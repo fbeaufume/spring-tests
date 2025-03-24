@@ -1,6 +1,10 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.item;
 
+import com.adeliosys.sample.test.CustomActiveProfilesResolver;
+import com.adeliosys.sample.test.DurationExtension;
+import com.adeliosys.sample.test.SpringContextTrackerExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WebMvcTest
 @ActiveProfiles(value = "test", resolver = CustomActiveProfilesResolver.class)
+@ExtendWith({SpringContextTrackerExtension.class, DurationExtension.class})
 class ItemControllerSliceTest {
 
     @Autowired

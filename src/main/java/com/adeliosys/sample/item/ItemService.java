@@ -1,4 +1,4 @@
-package com.adeliosys.sample;
+package com.adeliosys.sample.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
