@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
  * <p>
  * Note that Spring Test also provides a TestExecutionListener interface, but it is not the same as the one from JUnit.
  */
-public class CustomTestExecutionListener implements TestExecutionListener {
+public class DurationListener implements TestExecutionListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomTestExecutionListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DurationListener.class);
 
     private static long startTimestamp = 0;
 

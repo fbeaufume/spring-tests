@@ -19,8 +19,8 @@ The support test classes are :
 
 - `BaseTest`: a base class for several integration test classes
 - `DurationExtension`: a JUnit 5 extension to measure test execution time
+- `DurationListener`: a JUnit 5 listener that logs the total tests execution duration
 - `DatabaseCleanupExtension`: a JUnit 5 extension that verifies that the database is cleared after each test class
-- `CustomTestExecutionListener`: a JUnit 5 listener that logs the total tests execution duration
 - `SpringConytextTrackerExtension`: a JUnit 5 extension to track Spring application context usage over test classes
 
 For extra information about Spring application context caching in tests, see [Context Caching](https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html).

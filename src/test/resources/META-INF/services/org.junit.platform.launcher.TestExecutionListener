@@ -1,2 +1,2 @@
-com.adeliosys.sample.test.CustomTestExecutionListener
+com.adeliosys.sample.test.DurationListener
 com.adeliosys.sample.test.SpringContextTrackerExtension
