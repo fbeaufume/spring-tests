@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * This JUnit 5 extension verifies that the application tables are left empty by the test classes.
  */
-public class DatabaseCleanupExtension implements AfterAllCallback {
+public class DatabaseCleanupCheckExtension implements AfterAllCallback {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseCleanupExtension.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseCleanupCheckExtension.class);
 
     @Override
     public void afterAll(ExtensionContext context) {
