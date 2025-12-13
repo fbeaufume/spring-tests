@@ -1,8 +1,8 @@
 # Integration tests with Spring
 
 This repository is a sample application for my
-[Getting started with Spring tests](https://www.adeliosys.fr/articles/spring-tests/) and
-[Switching between H2 and Testcontainers in Spring tests](https://www.adeliosys.fr/articles/spring-tests-database/)
+[Getting started with Spring tests](https://beaufume.fr/articles/spring-tests/) and
+[Switching between H2 and Testcontainers in Spring tests](https://beaufume.fr/articles/spring-tests-database/)
 articles.
 
 This simple Spring Boot web application shows several opinionated best practices for Spring tests.
