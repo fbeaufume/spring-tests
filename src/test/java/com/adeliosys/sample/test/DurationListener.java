@@ -26,6 +26,6 @@ public class DurationListener implements TestExecutionListener {
     @Override
     public void testPlanExecutionFinished(TestPlan testPlan) {
         long duration = System.currentTimeMillis() - startTimestamp;
-        LOGGER.info("Tests executed in {} s", String.format("%d.%03d", duration / 1000, duration % 1000));
+        LOGGER.info("Tests executed in {} s", "%d.%03d".formatted(duration / 1000, duration % 1000));
     }
 }
