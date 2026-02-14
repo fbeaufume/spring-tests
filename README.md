@@ -1,29 +1,31 @@
 # Integration tests with Spring
 
 This repository is a sample application for my
-[Getting started with Spring tests](https://beaufume.fr/articles/spring-tests/) and
+[Getting started with Spring tests](https://beaufume.fr/articles/spring-tests/),
+[JUnit extensions for Spring tests](https://beaufume.fr/articles/spring-tests-extensions/) and
 [Switching between H2 and Testcontainers in Spring tests](https://beaufume.fr/articles/spring-tests-database/)
 articles.
 
-This simple Spring Boot web application shows several opinionated best practices for Spring tests.
+This simple Spring Boot 3 web application shows several opinionated test practices.
 
 The test classes are :
 
-- `ItemServiceTest`: an example of service tests
-- `ItemControllerServerTest`: an example of "server" web integration tests for a REST controller using MockMvc
-- `ItemControllerClientTest`: an example of "client" web integration tests for a REST controller using REST Assured
-- `ItemControllerSliceTest`: an example of a "web slice" integration tests for a REST controller (uses a dedicated Spring application context)
-- `ItemTest`: basic non-Spring tests
+- `ItemServiceTest`: service integration tests
+- `ItemControllerServerTest`: "server web" integration tests using `MockMvc`
+- `ItemControllerClientTest`: "client web" integration tests using REST Assured
+- `ItemControllerSliceTest`: "web slice" component tests using `MockMvc`
+- `ItemTest`: unit tests, does not use Spring at all
 
-The support test classes are :
+The test support classes are :
 
-- `BaseTest`: a base class for several integration test classes
-- `DurationExtension`: a JUnit 5 extension to measure test execution time
-- `DurationListener`: a JUnit 5 listener that logs the total tests execution duration
-- `DatabaseCleanupCheckExtension`: a JUnit 5 extension that verifies that the database is cleared after each test class
-- `SpringContextTrackerExtension`: a JUnit 5 extension to track Spring application context usage over test classes
+- `BaseTest`: base class for several Spring test classes
+- `DurationExtension`: JUnit 5 extension to measure test execution time
+- `DurationListener`: JUnit 5 listener that logs the total tests execution duration
+- `DatabaseCleanupCheckExtension`: JUnit 5 extension that verifies that the database is cleared after each test class
+- `SpringContextTrackerExtension`: JUnit 5 extension that tracks Spring application context usage by test classes
 
-For extra information about Spring application context caching in tests, see [Context Caching](https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html).
+For extra information about Spring application context caching in tests, see
+[Context Caching](https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html).
 
 To run the tests using H2 execute `mvn test`.
 
