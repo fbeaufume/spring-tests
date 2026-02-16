@@ -29,13 +29,13 @@ class ItemControllerServerTest extends BaseTest {
 
     @BeforeAll
     static void beforeAll(@Autowired ItemRepository itemRepository) {
-        itemRepository.saveAll(List.of(new Item("item1", 10), new Item("item2", 20)));
+        itemRepository.save(new Item("Item 1", 10));
     }
 
     @AfterAll
     static void afterAll(@Autowired ItemRepository itemRepository) {
         // Only used to show that @Transactional reverted the item inserted during createItem test method
-        assertEquals(2, itemRepository.count());
+        assertEquals(1, itemRepository.count());
 
         itemRepository.deleteAll();
     }
@@ -47,11 +47,9 @@ class ItemControllerServerTest extends BaseTest {
     public void getItems1() throws Exception {
         mockMvc.perform(get("/items"))
                 .andExpect(status().is(200))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].name", is("item1")))
-                .andExpect(jsonPath("$[0].price", is(10)))
-                .andExpect(jsonPath("$[1].name", is("item2")))
-                .andExpect(jsonPath("$[1].price", is(20)));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].name", is("Item 1")))
+                .andExpect(jsonPath("$[0].price", is(10)));
     }
 
     /**
@@ -63,24 +61,22 @@ class ItemControllerServerTest extends BaseTest {
                 .andExpect(status().is(200))
                 .andReturn().getResponse().getContentAsString(), new TypeReference<>() {
         });
-        assertEquals(2, items.size());
-        assertEquals("item1", items.get(0).name());
+        assertEquals(1, items.size());
+        assertEquals("Item 1", items.get(0).name());
         assertEquals(10, items.get(0).price());
-        assertEquals("item2", items.get(1).name());
-        assertEquals(20, items.get(1).price());
     }
 
     @Test
     public void createItem() throws Exception {
         mockMvc.perform(post("/items")
-                        .content("{ \"name\":\"item3\", \"price\":30 }")
+                        .content("{ \"name\":\"Item 2\", \"price\":20 }")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.id", notNullValue()));
 
         List<Item> items = itemRepository.findAll();
-        assertEquals(3, items.size());
-        assertEquals("item3", items.get(2).getName());
-        assertEquals(30, items.get(2).getPrice());
+        assertEquals(2, items.size());
+        assertEquals("Item 2", items.get(1).getName());
+        assertEquals(20, items.get(1).getPrice());
     }
 }

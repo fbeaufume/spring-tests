@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Web slice test for the item controller.
  */
-@WebMvcTest
+@WebMvcTest(ItemController.class)
 @ActiveProfiles(value = "test", resolver = CustomActiveProfilesResolver.class)
 @ExtendWith({SpringContextTrackerExtension.class, DurationExtension.class})
 class ItemControllerSliceTest {
@@ -36,12 +36,12 @@ class ItemControllerSliceTest {
 
     @Test
     public void getItems() throws Exception {
-        Mockito.when(itemService.getItems()).thenReturn(List.of(new Item("item1", 10)));
+        Mockito.when(itemService.getItems()).thenReturn(List.of(new Item("Item 1", 10)));
 
         mockMvc.perform(get("/items"))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("item1")))
+                .andExpect(jsonPath("$[0].name", is("Item 1")))
                 .andExpect(jsonPath("$[0].price", is(10)));
     }
 }

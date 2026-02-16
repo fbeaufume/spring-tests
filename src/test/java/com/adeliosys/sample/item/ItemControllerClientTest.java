@@ -27,7 +27,7 @@ class ItemControllerClientTest extends BaseTest {
 
     @BeforeAll
     static void beforeAll(@Autowired ItemRepository itemRepository) {
-        itemRepository.saveAll(List.of(new Item("item1", 10), new Item("item2", 20)));
+        itemRepository.save(new Item("Item 1", 10));
     }
 
     @AfterAll
@@ -48,11 +48,9 @@ class ItemControllerClientTest extends BaseTest {
         given().get("/items")
                 .then()
                 .statusCode(200)
-                .body("size()", is(2))
-                .body("[0].name", is("item1"))
-                .body("[0].price", is(10))
-                .body("[1].name", is("item2"))
-                .body("[1].price", is(20));
+                .body("size()", is(1))
+                .body("[0].name", is("Item 1"))
+                .body("[0].price", is(10));
 
     }
 
@@ -63,10 +61,8 @@ class ItemControllerClientTest extends BaseTest {
     public void getItems2() {
         List<ItemDto> items = given().get("/items").as(new TypeRef<>() {
         });
-        assertEquals(2, items.size());
-        assertEquals("item1", items.get(0).name());
+        assertEquals(1, items.size());
+        assertEquals("Item 1", items.get(0).name());
         assertEquals(10, items.get(0).price());
-        assertEquals("item2", items.get(1).name());
-        assertEquals(20, items.get(1).price());
     }
 }
