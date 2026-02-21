@@ -1,25 +1,34 @@
 package com.adeliosys.sample.test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.client.RestTestClient;
+import org.springframework.web.context.WebApplicationContext;
+import tools.jackson.databind.ObjectMapper;
 
 /**
- * Base class for some integration test classes.
+ * Base class for integration test classes.
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
+@AutoConfigureRestTestClient
 @ActiveProfiles(value = "test", resolver = CustomActiveProfilesResolver.class)
 @ExtendWith({SpringContextTrackerExtension.class, DatabaseCleanupCheckExtension.class, DurationExtension.class})
 public abstract class BaseTest {
 
     @Autowired
-    protected MockMvc mockMvc;
+    protected RestTestClient clientRtc;
+
+    protected RestTestClient serverRtc;
+
+    @BeforeEach
+    void baseBeforeEach(WebApplicationContext context) {
+        serverRtc = RestTestClient.bindToApplicationContext(context).build();
+    }
 
     // Not used, this is only for demonstration purpose
     @Autowired

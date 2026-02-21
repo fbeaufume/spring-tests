@@ -7,41 +7,39 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.client.RestTestClient;
 
 import java.util.List;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Web slice test for the item controller.
  */
 @WebMvcTest(ItemController.class)
+@AutoConfigureRestTestClient
 @ActiveProfiles(value = "test", resolver = CustomActiveProfilesResolver.class)
 @ExtendWith({SpringContextTrackerExtension.class, DurationExtension.class})
 class ItemControllerSliceTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private RestTestClient client;
 
-    @MockBean
+    @MockitoBean
     private ItemService itemService;
 
     @Test
-    public void getItems() throws Exception {
+    public void getItems() {
         Mockito.when(itemService.getItems()).thenReturn(List.of(new Item("Item 1", 10)));
 
-        mockMvc.perform(get("/items"))
-                .andExpect(status().is(200))
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("Item 1")))
-                .andExpect(jsonPath("$[0].price", is(10)));
+        client.get().uri("/items")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.length()").isEqualTo(1)
+                .jsonPath("$[0].name").isEqualTo("Item 1")
+                .jsonPath("$[0].price").isEqualTo(10);
     }
 }
